@@ -1,4 +1,4 @@
-package com.arubianoch.movierapapi.detailMovie
+package com.arubianoch.movierapapi.ui.detailMovie
 
 import androidx.lifecycle.ViewModel;
 

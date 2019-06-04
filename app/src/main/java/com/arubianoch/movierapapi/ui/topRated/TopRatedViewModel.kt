@@ -1,4 +1,4 @@
-package com.arubianoch.movierapapi.topRated
+package com.arubianoch.movierapapi.ui.topRated
 
 import androidx.lifecycle.ViewModel;
 

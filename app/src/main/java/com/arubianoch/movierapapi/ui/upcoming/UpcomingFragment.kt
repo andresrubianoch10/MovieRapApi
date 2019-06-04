@@ -1,4 +1,4 @@
-package com.arubianoch.movierapapi.upcoming
+package com.arubianoch.movierapapi.ui.upcoming
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle

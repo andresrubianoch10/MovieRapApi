@@ -1,4 +1,4 @@
-package com.arubianoch.movierapapi.popular
+package com.arubianoch.movierapapi.ui.popular
 
 import androidx.lifecycle.ViewModel;
 
