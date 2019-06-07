@@ -9,13 +9,16 @@ import org.threeten.bp.ZonedDateTime
  */
 const val MOVIE_INFO_ID = 0
 
-@Entity(tableName = "movie_info")
+@Entity(tableName = "movie_metadata")
 data class MovieMetadata(
-    val page: Int,
-    val total_pages: Int,
-    val total_results: Int
+    val page: Int?,
+    val total_pages: Int?,
+    val total_results: Int?
 ) {
     @PrimaryKey(autoGenerate = false)
     var id: Int = MOVIE_INFO_ID
-    var zonedDateTime: ZonedDateTime = ZonedDateTime.now()
+    val zonedDateTime: ZonedDateTime
+        get() {
+            return ZonedDateTime.now()
+        }
 }
