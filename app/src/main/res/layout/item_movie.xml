@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/CardView.Light"
+        app:cardCornerRadius="@dimen/medium_margin"
+        android:layout_margin="@dimen/xxx_small_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/medium_margin">
+
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                  tools:text="MAD MAX Fury Road" app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+                  android:maxLines="1"
+                  android:ellipsize="end"
+                  app:layout_constraintBottom_toTopOf="@+id/subtitleMovie"
+                  app:layout_constraintTop_toBottomOf="@+id/moviePoster"
+                  android:id="@+id/movieTitle"
+                  android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                  android:layout_marginTop="@dimen/small_margin"
+                  android:textStyle="bold"
+                  android:textColor="@android:color/background_dark"/>
+
+        <TextView android:id="@+id/subtitleMovie" android:layout_width="0dp" android:layout_height="wrap_content"
+                  android:text="Action, Adventure, Fantasy, Romantinc..."
+                  android:maxLines="1"
+                  android:ellipsize="end"
+                  android:textSize="@dimen/small_text"
+                  app:layout_constraintTop_toBottomOf="@+id/movieTitle"
+                  app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                  app:layout_constraintStart_toStartOf="@+id/guidelineStart"/>
+
+        <ImageView android:id="@+id/moviePoster"
+                   android:layout_width="0dp" android:layout_height="270dp"
+                   android:contentDescription="@string/app_name"
+                   android:scaleType="fitXY"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintBottom_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineTop"
+                style="@style/guideline_horizontal"
+                app:layout_constraintGuide_begin="@dimen/xxx_small_margin"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineBottom"
+                style="@style/guideline_horizontal"
+                app:layout_constraintGuide_end="@dimen/xxx_small_margin"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineStart"
+                style="@style/guideline_vertical"
+                app:layout_constraintGuide_begin="@dimen/small_margin"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineEnd"
+                style="@style/guideline_vertical"
+                app:layout_constraintGuide_end="@dimen/small_margin"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
