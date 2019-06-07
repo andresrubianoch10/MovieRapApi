@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/medium_margin">
+            android:layout_marginBottom="@dimen/small_margin">
 
         <TextView android:layout_width="0dp" android:layout_height="wrap_content"
                   tools:text="MAD MAX Fury Road" app:layout_constraintStart_toStartOf="@+id/guidelineStart"
@@ -19,25 +19,25 @@
                   android:ellipsize="end"
                   app:layout_constraintBottom_toTopOf="@+id/subtitleMovie"
                   app:layout_constraintTop_toBottomOf="@+id/moviePoster"
+                  app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
+                  android:layout_marginTop="@dimen/x_small_margin"
                   android:id="@+id/movieTitle"
                   android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-                  android:layout_marginTop="@dimen/small_margin"
-                  android:textStyle="bold"
                   android:textColor="@android:color/background_dark"/>
 
         <TextView android:id="@+id/subtitleMovie" android:layout_width="0dp" android:layout_height="wrap_content"
                   android:text="Action, Adventure, Fantasy, Romantinc..."
                   android:maxLines="1"
                   android:ellipsize="end"
-                  android:textSize="@dimen/small_text"
+                  android:textSize="@dimen/x_small_text"
                   app:layout_constraintTop_toBottomOf="@+id/movieTitle"
-                  app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                  app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
                   app:layout_constraintStart_toStartOf="@+id/guidelineStart"/>
 
         <ImageView android:id="@+id/moviePoster"
-                   android:layout_width="0dp" android:layout_height="270dp"
+                   android:layout_width="0dp" android:layout_height="455dp"
                    android:contentDescription="@string/app_name"
-                   android:scaleType="fitXY"
+                   android:scaleType="fitEnd"
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintTop_toTopOf="parent"
