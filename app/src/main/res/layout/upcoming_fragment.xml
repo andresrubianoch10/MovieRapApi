@@ -7,6 +7,7 @@
         tools:context=".ui.upcoming.UpcomingFragment">
 
     <TextView
+            android:id="@+id/upcoming"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Upcoming"
