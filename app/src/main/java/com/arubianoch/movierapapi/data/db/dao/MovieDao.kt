@@ -24,7 +24,7 @@ interface MovieDao {
     fun getMoviesByType(movieType: String): LiveData<List<MovieInfo>>
 
     @Query("SELECT * FROM movie_info WHERE id = :movieId")
-    fun getMovieDetail(movieId: Int): LiveData<MovieInfo>
+    fun getMovieDetail(movieId: String): LiveData<MovieInfo>
 
     @Query("SELECT * FROM movie_metadata")
     fun getMovieMetada(): MovieMetadata
