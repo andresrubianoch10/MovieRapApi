@@ -54,9 +54,9 @@ class MovieRepositoryImpl(
         }
     }
 
-    override suspend fun getMovieDetail(): LiveData<MovieInfo> {
+    override suspend fun getMovieDetail(movieId: String): LiveData<MovieInfo> {
         return withContext(Dispatchers.IO) {
-            return@withContext movieDao.getMovieDetail(1)
+            return@withContext movieDao.getMovieDetail(movieId)
         }
     }
 
@@ -67,12 +67,21 @@ class MovieRepositoryImpl(
             fetchTopRated(1)
             fetchUpcoming("2019-06-15", "2019-09-15")
             fetchPopular(1)
-        } else if (isFetchMovieNeeded(lastInfoDownloaded.zonedDateTime)) {
-            fetchTopRated(lastInfoDownloaded.page?.plus(1))
+        } else {
+//            if (isFetchMovieNeeded(lastInfoDownloaded.zonedDateTime)) {
+            val nextPage = lastInfoDownloaded.page?.plus(1)
+            fetchTopRated(nextPage)
             fetchUpcoming("2019-06-15", "2019-09-15")
-            fetchPopular(lastInfoDownloaded.page?.plus(1))
+            fetchPopular(nextPage)
+
+            lastInfoDownloaded.page = nextPage?.plus(1)
+            upsertMovieMetada(lastInfoDownloaded)
         }
 
+    }
+
+    private fun upsertMovieMetada(lastInfoDownloaded: MovieMetadata) {
+        movieDao.upsertMovieMetadata(lastInfoDownloaded)
     }
 
     private suspend fun fetchPopular(page: Int?) {
