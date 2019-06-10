@@ -3,12 +3,13 @@ package com.arubianoch.movierapapi.ui.popular
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.arubianoch.movierapapi.R
 import com.arubianoch.movierapapi.data.db.entity.MovieInfo
@@ -16,13 +17,12 @@ import com.arubianoch.movierapapi.ui.adapter.MovieAdapter
 import com.arubianoch.movierapapi.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.popular_fragment.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class PopularFragment : ScopedFragment(), KodeinAware {
+class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickListener {
 
     override val kodein by closestKodein()
     private val viewModelFactory: PopularViewModelFactory by instance()
@@ -43,9 +43,18 @@ class PopularFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun setUpRecycler(movies: List<MovieInfo>) {
-        adapter = MovieAdapter(activity!!, movies as ArrayList<MovieInfo>)
+        adapter = MovieAdapter(activity!!, movies as ArrayList<MovieInfo>, this)
         containerMovie.adapter = adapter
-        containerMovie.layoutManager = GridLayoutManager(activity!!, 2)
+        containerMovie.layoutManager = GridLayoutManager(activity!!, 3)
+    }
+
+    override fun onItemClicked(itemView: MovieInfo) {
+        showMovieDetail(itemView.id.toString())
+    }
+
+    private fun showMovieDetail(id: String) {
+        val actionDetail = PopularFragmentDirections.actionDetail(id)
+        Navigation.findNavController(activity!!, R.id.nav_host_fragment).navigate(actionDetail)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
