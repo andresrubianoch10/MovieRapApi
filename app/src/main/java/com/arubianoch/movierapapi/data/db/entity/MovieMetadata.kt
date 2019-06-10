@@ -11,7 +11,7 @@ const val MOVIE_INFO_ID = 0
 
 @Entity(tableName = "movie_metadata")
 data class MovieMetadata(
-    val page: Int?,
+    var page: Int?,
     val total_pages: Int?,
     val total_results: Int?
 ) {
