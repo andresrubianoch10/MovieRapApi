@@ -5,7 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/CardView.Light"
-        app:cardCornerRadius="@dimen/medium_margin"
+        app:cardCornerRadius="@dimen/small_margin"
+        app:cardElevation="@dimen/small_margin"
         android:layout_margin="@dimen/xxx_small_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +36,7 @@
                   app:layout_constraintStart_toStartOf="@+id/guidelineStart"/>
 
         <ImageView android:id="@+id/moviePoster"
-                   android:layout_width="0dp" android:layout_height="455dp"
+                   android:layout_width="0dp" android:layout_height="270dp"
                    android:contentDescription="@string/app_name"
                    android:scaleType="fitEnd"
                    app:layout_constraintStart_toStartOf="parent"

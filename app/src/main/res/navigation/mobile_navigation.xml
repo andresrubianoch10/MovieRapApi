@@ -5,12 +5,28 @@
             app:startDestination="@id/popularFragment">
 
     <fragment android:id="@+id/popularFragment" android:name="com.arubianoch.movierapapi.ui.popular.PopularFragment"
-              android:label="popular_fragment" tools:layout="@layout/popular_fragment"/>
+              android:label="popular_fragment" tools:layout="@layout/popular_fragment">
+        <action
+                android:id="@+id/actionDetail"
+                app:destination="@id/detailMovieFragment"/>
+    </fragment>
     <fragment android:id="@+id/topRatedFragment" android:name="com.arubianoch.movierapapi.ui.topRated.TopRatedFragment"
-              android:label="top_rated_fragment" tools:layout="@layout/top_rated_fragment"/>
+              android:label="top_rated_fragment" tools:layout="@layout/top_rated_fragment">
+        <action
+                android:id="@+id/actionDetail"
+                app:destination="@id/detailMovieFragment"/>
+    </fragment>
     <fragment android:id="@+id/upcomingFragment" android:name="com.arubianoch.movierapapi.ui.upcoming.UpcomingFragment"
-              android:label="upcoming_fragment" tools:layout="@layout/upcoming_fragment"/>
+              android:label="upcoming_fragment" tools:layout="@layout/upcoming_fragment">
+        <action
+                android:id="@+id/actionDetail"
+                app:destination="@id/detailMovieFragment"/>
+    </fragment>
     <fragment android:id="@+id/detailMovieFragment"
               android:name="com.arubianoch.movierapapi.ui.detailMovie.DetailMovieFragment"
-              android:label="detail_movie_fragment" tools:layout="@layout/detail_movie_fragment"/>
+              android:label="detail_movie_fragment" tools:layout="@layout/detail_movie_fragment">
+        <argument
+                android:name="movieId"
+                app:argType="string"/>
+    </fragment>
 </navigation>
