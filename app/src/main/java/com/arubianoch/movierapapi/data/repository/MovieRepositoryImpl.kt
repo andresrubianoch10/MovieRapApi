@@ -27,7 +27,7 @@ class MovieRepositoryImpl(
     private fun persistMovies(movies: MovieResponse?) {
         GlobalScope.launch(Dispatchers.IO) {
             movieDao.upsertMovieMetadata(
-                MovieMetadata(movies?.page, movies?.total_pages, movies?.total_results)
+                MovieMetadata(movies?.page, 0, 0, movies?.total_pages, movies?.total_results)
             )
             movieDao.upsertMovieInfo(movies?.results)
         }
@@ -41,7 +41,7 @@ class MovieRepositoryImpl(
     }
 
     override suspend fun getMoviesByPopular(): LiveData<List<MovieInfo>> {
-        initMovieData()
+        fetchPopular()
         return withContext(Dispatchers.IO) {
             return@withContext movieDao.getMoviesByType("popular")
         }
@@ -61,43 +61,57 @@ class MovieRepositoryImpl(
     }
 
     private fun initMovieData() = runBlocking {
-        val lastInfoDownloaded: MovieMetadata? = movieDao.getMovieMetada()
+//        val lastInfoDownloaded: MovieMetadata? = movieDao.getMovieMetada()
+//            fetchPopular()
+//        if (lastInfoDownloaded == null) {
+//            fetchTopRated(1)
+//            fetchUpcoming("2019-06-15", "2019-09-15", 1)
 
-        if (lastInfoDownloaded == null) {
-            fetchTopRated(1)
-            fetchUpcoming("2019-06-15", "2019-09-15")
-            fetchPopular(1)
-        } else {
+//        } else {
 //            if (isFetchMovieNeeded(lastInfoDownloaded.zonedDateTime)) {
-            val nextPage = lastInfoDownloaded.page?.plus(1)
-            fetchTopRated(nextPage)
-            fetchUpcoming("2019-06-15", "2019-09-15")
-            fetchPopular(nextPage)
 
-            lastInfoDownloaded.page = nextPage?.plus(1)
-            upsertMovieMetada(lastInfoDownloaded)
-        }
+//            fetchTopRated(nextPage!!)
+//            fetchUpcoming("2019-06-15", "2019-09-15", nextPage)
+//            fetchPopular(nextPage)
+//        }
 
     }
 
-    private fun upsertMovieMetada(lastInfoDownloaded: MovieMetadata) {
+    private fun isDataInitialized(): Boolean {
+        return getLastMovieMetadataDownloaded() != null
+    }
+
+    private fun upsertMovieMetadata(lastInfoDownloaded: MovieMetadata) {
         movieDao.upsertMovieMetadata(lastInfoDownloaded)
     }
 
-    private suspend fun fetchPopular(page: Int?) {
-        movieDataSource.fetchMovies("popularity.desc", "popular")
+    private suspend fun fetchPopular() {
+        var nextPage = 1
+        if (isDataInitialized()) {
+            val lastInfoDownloaded = getLastMovieMetadataDownloaded()
+            nextPage = lastInfoDownloaded.pagePopular?.plus(1)!!
+            lastInfoDownloaded.pagePopular = nextPage
+            upsertMovieMetadata(lastInfoDownloaded)
+        }
+        movieDataSource.fetchMovies("popularity.desc", "popular", nextPage)
     }
 
-    private suspend fun fetchUpcoming(initDate: String, finishDate: String) {
-        movieDataSource.upcomingMovies(initDate, finishDate, "upcoming")
+    private fun getLastMovieMetadataDownloaded(): MovieMetadata = movieDao.getMovieMetada()
+
+    private suspend fun fetchUpcoming(initDate: String, finishDate: String, page: Int) {
+        movieDataSource.upcomingMovies(initDate, finishDate, "upcoming", page)
     }
 
-    private suspend fun fetchTopRated(page: Int?) {
-        movieDataSource.fetchMovies("vote_average.desc", "topRated")
+    private suspend fun fetchTopRated(page: Int) {
+        movieDataSource.fetchMovies("vote_average.desc", "topRated", page)
     }
 
     private fun isFetchMovieNeeded(lastFetchTime: ZonedDateTime): Boolean {
         val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
         return lastFetchTime.isBefore(thirtyMinutesAgo)
+    }
+
+    override suspend fun fetchMoreMoviePopular() {
+        fetchPopular()
     }
 }
