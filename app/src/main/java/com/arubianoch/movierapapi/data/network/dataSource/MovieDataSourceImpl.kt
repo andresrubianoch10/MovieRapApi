@@ -22,9 +22,9 @@ class MovieDataSourceImpl(
     override val downloadedUpcomingMovies: LiveData<MovieResponse>
         get() = _downloadedUpcomingMovies
 
-    override suspend fun fetchMovies(sortBy: String, movieType: String) {
+    override suspend fun fetchMovies(sortBy: String, movieType: String, page: Int) {
         try {
-            val fetchedMovies = apiMovieService.getPopularMovies(sortBy).await()
+            val fetchedMovies = apiMovieService.getPopularMovies(sortBy, page).await()
             fetchedMovies.results.forEach { it.movieType = movieType}
             _downloadedMovies.postValue(fetchedMovies)
         } catch (e: NoConnectivityException) {
@@ -32,9 +32,9 @@ class MovieDataSourceImpl(
         }
     }
 
-    override suspend fun upcomingMovies(initDate: String, lastDate: String, movieType: String) {
+    override suspend fun upcomingMovies(initDate: String, lastDate: String, movieType: String, page: Int) {
         try {
-            val upcomingMovies = apiMovieService.getUpcomingMovies(initDate, lastDate).await()
+            val upcomingMovies = apiMovieService.getUpcomingMovies(initDate, lastDate, page).await()
             upcomingMovies.results.forEach { it.movieType = movieType }
             _downloadedUpcomingMovies.postValue(upcomingMovies)
         } catch (e: NoConnectivityException) {

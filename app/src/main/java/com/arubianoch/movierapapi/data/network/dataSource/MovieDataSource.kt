@@ -13,12 +13,14 @@ interface MovieDataSource {
 
     suspend fun fetchMovies(
         sortBy: String,
-        movieType: String
+        movieType: String,
+        page: Int
     )
 
     suspend fun upcomingMovies(
         initDate: String,
         lastDate: String,
-        movieType: String
+        movieType: String,
+        page: Int
     )
 }
