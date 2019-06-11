@@ -17,7 +17,7 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun upsertMovieInfo(movieList: List<MovieInfo>?)
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsertMovieMetadata(movieList: MovieMetadata)
 
     @Query("SELECT * FROM movie_info WHERE movieType = :movieType")
