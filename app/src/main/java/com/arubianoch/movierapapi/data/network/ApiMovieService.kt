@@ -14,7 +14,6 @@ import retrofit2.http.Query
 /**
  * @author Andres Rubiano Del Chiaro
  */
-
 private const val URL = "https://api.themoviedb.org/3/"
 private const val API_KEY = "0266c46c25aa2fd93373aba4f48e0fe8"
 
@@ -22,13 +21,15 @@ interface ApiMovieService {
 
     @GET("discover/movie")
     fun getPopularMovies(
-        @Query("sort_by") sortBy: String
+        @Query("sort_by") sortBy: String,
+        @Query("page") page: Int
     ): Deferred<MovieResponse>
 
     @GET("discover/movie")
     fun getUpcomingMovies(
         @Query("primary_release_date.gte") initDate: String,
-        @Query("primary_release_date.lte") finishDate: String
+        @Query("primary_release_date.lte") finishDate: String,
+        @Query("page") page: Int
     ): Deferred<MovieResponse>
 
     companion object {
