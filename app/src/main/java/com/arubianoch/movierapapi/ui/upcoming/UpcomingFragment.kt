@@ -43,7 +43,7 @@ class UpcomingFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
     }
 
     private fun setUpRecycler(movies: List<MovieInfo>) {
-        adapter = MovieAdapter(activity!!, movies as ArrayList<MovieInfo>, this)
+        adapter = MovieAdapter(activity!!, this)
         containerMovie.adapter = adapter
         containerMovie.layoutManager = GridLayoutManager(activity!!, 3)
     }
