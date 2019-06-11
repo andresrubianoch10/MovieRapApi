@@ -3,13 +3,11 @@ package com.arubianoch.movierapapi.ui.popular
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 import com.arubianoch.movierapapi.R
 import com.arubianoch.movierapapi.data.db.entity.MovieInfo
@@ -29,6 +27,7 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
     private var adapter: MovieAdapter? = null
 
     private lateinit var viewModel: PopularViewModel
+    private var lastPosition: Int? = 0
 
     companion object {
         fun newInstance() = PopularFragment()
@@ -38,18 +37,45 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.popular_fragment, container, false)
-        return view
+        return inflater.inflate(R.layout.popular_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        plus.setOnClickListener {
+            lastPosition = adapter?.itemCount?.minus(1)
+            viewModel.fetchPopular()
+        }
     }
 
     private fun setUpRecycler(movies: List<MovieInfo>) {
-        adapter = MovieAdapter(activity!!, movies as ArrayList<MovieInfo>, this)
+        if (adapter == null) {
+            adapter = MovieAdapter(this@PopularFragment.requireContext(), this@PopularFragment)
+        }
         containerMovie.adapter = adapter
         containerMovie.layoutManager = GridLayoutManager(activity!!, 3)
+        adapter!!.addAll(movies)
+
+        (containerMovie.layoutManager as GridLayoutManager).scrollToPosition(lastPosition!!)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putInt("position", lastPosition!!)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        if (savedInstanceState != null) lastPosition = savedInstanceState.getInt("position", 0)
     }
 
     override fun onItemClicked(itemView: MovieInfo) {
         showMovieDetail(itemView.id.toString())
+
+        lastPosition = itemView.customId.minus(1)
     }
 
     private fun showMovieDetail(id: String) {
