@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,6 +18,8 @@ import com.arubianoch.movierapapi.ui.base.ScopedFragment
 import com.arubianoch.movierapapi.ui.popular.PopularFragmentDirections
 import com.arubianoch.movierapapi.ui.popular.PopularViewModel
 import com.arubianoch.movierapapi.ui.popular.PopularViewModelFactory
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.detail_movie_fragment.*
 import kotlinx.android.synthetic.main.popular_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,6 +44,13 @@ class UpcomingFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.popular_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = activity as AppCompatActivity?
+        activity?.toolbar?.isVisible = true
     }
 
     private fun setUpRecycler(movies: List<MovieInfo>) {

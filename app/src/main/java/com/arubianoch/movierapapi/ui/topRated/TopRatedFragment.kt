@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -15,6 +17,7 @@ import com.arubianoch.movierapapi.ui.base.ScopedFragment
 import com.arubianoch.movierapapi.ui.popular.PopularFragmentDirections
 import com.arubianoch.movierapapi.ui.popular.PopularViewModel
 import com.arubianoch.movierapapi.ui.popular.PopularViewModelFactory
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.popular_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -52,6 +55,13 @@ class TopRatedFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
         viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(PopularViewModel::class.java)
 
         bindUI()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = activity as AppCompatActivity?
+        activity?.toolbar?.isVisible = true
     }
 
     private fun bindUI() = launch(Dispatchers.Main) {

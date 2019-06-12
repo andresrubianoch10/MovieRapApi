@@ -1,18 +1,20 @@
 package com.arubianoch.movierapapi.ui.popular
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-
 import com.arubianoch.movierapapi.R
 import com.arubianoch.movierapapi.data.db.entity.MovieInfo
+import com.arubianoch.movierapapi.ui.MainActivity
 import com.arubianoch.movierapapi.ui.adapter.MovieAdapter
 import com.arubianoch.movierapapi.ui.base.ScopedFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.popular_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -73,7 +75,14 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
         lastPosition = adapter?.itemCount?.minus(6)
     }
 
-    private fun showMovieDetail(id: String) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = activity as MainActivity?
+        activity?.toolbar?.isVisible = true
+    }
+
+    public fun showMovieDetail(id: String) {
         val actionDetail = PopularFragmentDirections.actionDetail(id)
         Navigation.findNavController(activity!!, R.id.nav_host_fragment).navigate(actionDetail)
     }
