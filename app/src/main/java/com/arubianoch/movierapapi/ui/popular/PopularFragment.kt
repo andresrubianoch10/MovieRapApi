@@ -40,16 +40,7 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
         return inflater.inflate(R.layout.popular_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        plus.setOnClickListener {
-            lastPosition = adapter?.itemCount?.minus(1)
-            viewModel.fetchPopular()
-        }
-    }
-
-    private fun setUpRecycler(movies: List<MovieInfo>) {
+    private fun setUpRecycler(movies: List<Any>) {
         if (adapter == null) {
             adapter = MovieAdapter(this@PopularFragment.requireContext(), this@PopularFragment)
         }
@@ -74,8 +65,12 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
 
     override fun onItemClicked(itemView: MovieInfo) {
         showMovieDetail(itemView.id.toString())
-
         lastPosition = itemView.customId.minus(1)
+    }
+
+    override fun onAddMoreItems() {
+        viewModel.fetchPopular()
+        lastPosition = adapter?.itemCount?.minus(6)
     }
 
     private fun showMovieDetail(id: String) {
