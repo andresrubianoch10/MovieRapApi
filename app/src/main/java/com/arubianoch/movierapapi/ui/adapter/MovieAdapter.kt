@@ -54,11 +54,10 @@ class MovieAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        val comparable = data?.get(position)
-        return when (comparable) {
+        return when (data?.get(position)) {
             is MovieInfo -> TYPE_FAMILY
             is Any -> TYPE_FRIEND
-            else -> throw IllegalArgumentException("Invalid type of data " + position)
+            else -> throw IllegalArgumentException("Invalid type of data $position")
         }
     }
 
