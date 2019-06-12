@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="wrap_content"
+                                                     style="@style/CardView.Light"
+                                                     app:cardCornerRadius="@dimen/small_margin"
+                                                     app:cardElevation="@dimen/small_margin"
+                                                     android:layout_margin="@dimen/xxx_small_margin">
+
+    <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       style="@style/CardView.Light"
+                                       app:cardCornerRadius="@dimen/small_margin"
+                                       app:cardElevation="@dimen/small_margin"
+                                       android:layout_margin="@dimen/xxx_small_margin">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/medium_margin"
+                android:elevation="@dimen/x_small_margin"
+                app:srcCompat="@drawable/ic_add"/>
+
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:id="@+id/progressBar"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:visibility="gone"/>
+    </androidx.cardview.widget.CardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
