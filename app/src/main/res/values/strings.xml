@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovieRapApi</string>
+    <string name="options">Search</string>
 </resources>
