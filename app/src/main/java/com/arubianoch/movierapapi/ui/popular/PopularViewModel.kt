@@ -26,4 +26,8 @@ class PopularViewModel(
     fun fetchPopular() = GlobalScope.launch(Dispatchers.IO) {
         movieRepository.fetchMoreMoviePopular()
     }
+
+    fun fetchTopRated() = GlobalScope.launch(Dispatchers.IO) {
+        movieRepository.fetchMoreMovieTopRated()
+    }
 }

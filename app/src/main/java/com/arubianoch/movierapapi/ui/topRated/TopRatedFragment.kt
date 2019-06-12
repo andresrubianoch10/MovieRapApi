@@ -32,6 +32,7 @@ class TopRatedFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
     private var adapter: MovieAdapter? = null
 
     private lateinit var viewModel: PopularViewModel
+    private var lastPosition: Int? = 0
 
     companion object {
         fun newInstance() = TopRatedFragment()
@@ -45,9 +46,26 @@ class TopRatedFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
     }
 
     private fun setUpRecycler(movies: List<MovieInfo>) {
-        adapter = MovieAdapter(activity!!, this)
+        if (adapter == null) {
+            adapter = MovieAdapter(this@TopRatedFragment.requireContext(), this)
+        }
         containerMovie.adapter = adapter
         containerMovie.layoutManager = GridLayoutManager(activity!!, 3)
+        adapter!!.addAll(movies)
+
+        (containerMovie.layoutManager as GridLayoutManager).scrollToPosition(lastPosition!!)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putInt("position", lastPosition!!)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        if (savedInstanceState != null) lastPosition = savedInstanceState.getInt("position", 0)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -80,7 +98,8 @@ class TopRatedFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
     }
 
     override fun onAddMoreItems() {
-
+        viewModel.fetchTopRated()
+        lastPosition = adapter?.itemCount?.minus(6)
     }
 
     private fun showMovieDetail(id: String) {

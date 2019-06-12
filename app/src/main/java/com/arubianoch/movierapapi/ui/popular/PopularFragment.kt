@@ -65,14 +65,11 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
         if (savedInstanceState != null) lastPosition = savedInstanceState.getInt("position", 0)
     }
 
-    override fun onItemClicked(itemView: MovieInfo) {
-        showMovieDetail(itemView.id.toString())
-        lastPosition = itemView.customId.minus(1)
-    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(PopularViewModel::class.java)
 
-    override fun onAddMoreItems() {
-        viewModel.fetchPopular()
-        lastPosition = adapter?.itemCount?.minus(6)
+        bindUI()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,18 +77,6 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
 
         val activity = activity as MainActivity?
         activity?.toolbar?.isVisible = true
-    }
-
-    public fun showMovieDetail(id: String) {
-        val actionDetail = PopularFragmentDirections.actionDetail(id)
-        Navigation.findNavController(activity!!, R.id.nav_host_fragment).navigate(actionDetail)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(PopularViewModel::class.java)
-
-        bindUI()
     }
 
     private fun bindUI() = launch(Dispatchers.Main) {
@@ -103,5 +88,19 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
             group_loading.visibility = View.GONE
             setUpRecycler(movies)
         })
+    }
+
+    override fun onItemClicked(itemView: MovieInfo) {
+        showMovieDetail(itemView.id.toString())
+    }
+
+    override fun onAddMoreItems() {
+        viewModel.fetchPopular()
+        lastPosition = adapter?.itemCount?.minus(6)
+    }
+
+    private fun showMovieDetail(id: String) {
+        val actionDetail = PopularFragmentDirections.actionDetail(id)
+        Navigation.findNavController(activity!!, R.id.nav_host_fragment).navigate(actionDetail)
     }
 }
