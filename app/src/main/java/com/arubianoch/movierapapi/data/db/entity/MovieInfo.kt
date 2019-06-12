@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
  * @author Andres Rubiano Del Chiaro
  */
 @Entity(tableName = "movie_info")
-data class MovieInfo(
+data class MovieInfo (
     val adult: Boolean?,
     val backdrop_path: String?,
 //    @Embedded
@@ -25,6 +25,27 @@ data class MovieInfo(
     val video: Boolean?,
     val vote_average: Double?,
     val vote_count: Int?
-) {
+) : Comparable<MovieInfo> {
+
+    override fun compareTo(other: MovieInfo): Int {
+        if (id > other.id) return 1
+        if (id < other.id) return 1
+        if (title?.length!! > other.title!!.length) return 1
+        if (title.length < other.title.length) return 1
+        return 0
+    }
+
+    override fun equals(obj: Any?): Boolean {
+        if (obj == null)
+            return false
+        if (obj === this)
+            return true
+        if (obj.javaClass != javaClass)
+            return false
+
+        val rhs = obj as MovieInfo?
+        return this.title == rhs!!.title
+    }
+
     lateinit var movieType: String
 }
