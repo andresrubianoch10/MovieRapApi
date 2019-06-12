@@ -1,12 +1,18 @@
 package com.arubianoch.movierapapi.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.arubianoch.movierapapi.R
+import com.arubianoch.movierapapi.ui.popular.PopularFragmentDirections
+import com.arubianoch.movierapapi.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,5 +33,46 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, null)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.menu_item_search -> onSearchClicked()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun onSearchClicked() {
+        startActivityForResult(
+            Intent(this, SearchActivity::class.java), SEARCH_REQUEST
+        )
+//        overridePendingTransition(R.anim.activity_in, R.anim.activity_out)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            SEARCH_REQUEST ->
+                if (resultCode == Activity.RESULT_OK)
+                    onMovieFounded(
+                        data!!.getStringExtra("search_title"),
+                        data!!.getIntExtra("search_id", 0)
+                    )
+        }
+    }
+
+    private fun onMovieFounded(movieTitle: String, movieId: Int) {
+        val actionDetail = PopularFragmentDirections.actionDetail(movieId.toString())
+        Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment).navigate(actionDetail)
+    }
+
+    companion object {
+        public const val SEARCH_REQUEST = 10
     }
 }
