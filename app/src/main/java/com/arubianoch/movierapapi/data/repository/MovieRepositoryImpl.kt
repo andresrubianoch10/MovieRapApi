@@ -30,26 +30,39 @@ class MovieRepositoryImpl(
     private fun persistMovies(movies: MovieResponse?) {
         GlobalScope.launch(Dispatchers.IO) {
             val lastInfoDownloaded = getLastMovieMetadataDownloaded()
-            var currentPopularPage = lastInfoDownloaded.pagePopular
-            var currentTopRatedPage = lastInfoDownloaded.pageTopRated
-            var currentUpcomingPage = lastInfoDownloaded.pageUpcoming
 
-            val movie = movies?.results?.get(0)
-            when (movie?.movieType) {
-                "popular" -> currentPopularPage?.plus(1)
-                "topRated" -> currentTopRatedPage?.plus(1)
-                "upcoming" -> currentUpcomingPage?.plus(1)
-            }
+            if (lastInfoDownloaded != null) {
+                var currentPopularPage = lastInfoDownloaded.pagePopular
+                var currentTopRatedPage = lastInfoDownloaded.pageTopRated
+                var currentUpcomingPage = lastInfoDownloaded.pageUpcoming
 
-            movieDao.upsertMovieMetadata(
-                MovieMetadata(
-                    currentPopularPage,
-                    currentTopRatedPage,
-                    currentUpcomingPage,
-                    movies?.total_pages,
-                    movies?.total_results
+                val movie = movies?.results?.get(0)
+                when (movie?.movieType) {
+                    "popular" -> currentPopularPage?.plus(1)
+                    "topRated" -> currentTopRatedPage?.plus(1)
+                    "upcoming" -> currentUpcomingPage?.plus(1)
+                }
+
+                movieDao.upsertMovieMetadata(
+                    MovieMetadata(
+                        currentPopularPage,
+                        currentTopRatedPage,
+                        currentUpcomingPage,
+                        movies?.total_pages,
+                        movies?.total_results
+                    )
                 )
-            )
+            } else {
+                movieDao.upsertMovieMetadata(
+                    MovieMetadata(
+                        1,
+                        0,
+                        0,
+                        movies?.total_pages,
+                        movies?.total_results
+                    )
+                )
+            }
             movieDao.upsertMovieInfo(movies?.results)
         }
     }
