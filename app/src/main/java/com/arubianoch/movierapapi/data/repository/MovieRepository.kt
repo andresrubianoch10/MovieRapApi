@@ -17,4 +17,8 @@ interface MovieRepository {
     suspend fun getMovieDetail(movieId: String): LiveData<MovieInfo>
 
     suspend fun fetchMoreMoviePopular()
+
+    suspend fun fetchMoreMovieTopRated()
+
+    suspend fun fetchMoreMovieUpcoming()
 }
