@@ -11,7 +11,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.arubianoch.movierapapi.R
 import com.arubianoch.movierapapi.data.db.entity.MovieInfo
-import com.arubianoch.movierapapi.ui.MainActivity
 import com.arubianoch.movierapapi.ui.adapter.MovieAdapter
 import com.arubianoch.movierapapi.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -75,8 +74,9 @@ class PopularFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClickL
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val activity = activity as MainActivity?
-        activity?.toolbar?.isVisible = true
+        val toolbar = activity?.toolbar
+        toolbar?.isVisible = true
+        toolbar?.title = "Movies"
     }
 
     private fun bindUI() = launch(Dispatchers.Main) {

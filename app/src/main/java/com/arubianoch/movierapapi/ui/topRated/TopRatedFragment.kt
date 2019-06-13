@@ -79,7 +79,9 @@ class TopRatedFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
         super.onViewCreated(view, savedInstanceState)
 
         val activity = activity as AppCompatActivity?
-        activity?.toolbar?.isVisible = true
+        val toolbar = activity?.toolbar
+        toolbar?.isVisible = true
+        toolbar?.title = "Movies"
     }
 
     private fun bindUI() = launch(Dispatchers.Main) {
