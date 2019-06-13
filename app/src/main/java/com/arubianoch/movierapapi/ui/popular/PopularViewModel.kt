@@ -23,6 +23,10 @@ class PopularViewModel(
         movieRepository.getMoviesByUpcoming()
     }
 
+    val allMovies by lazyDeferred {
+        movieRepository.getAllMovies()
+    }
+
     fun fetchPopular() = GlobalScope.launch(Dispatchers.IO) {
         movieRepository.fetchMoreMoviePopular()
     }

@@ -7,22 +7,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.arubianoch.movierapapi.R
 import com.arubianoch.movierapapi.data.db.entity.MovieInfo
-import com.arubianoch.movierapapi.ui.adapter.MovieAdapter
 import com.arubianoch.movierapapi.ui.adapter.SearchAdapter
 import com.arubianoch.movierapapi.ui.base.ScopedActivity
 import com.arubianoch.movierapapi.ui.popular.PopularViewModel
 import com.arubianoch.movierapapi.ui.popular.PopularViewModelFactory
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.popular_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -61,7 +57,7 @@ class SearchActivity : ScopedActivity(),
     }
 
     private fun bindUI() = launch(Dispatchers.Main) {
-        val movieResponse = viewModel.popular.await()
+        val movieResponse = viewModel.allMovies.await()
 
         movieResponse.observe(this@SearchActivity, Observer { movies ->
             if (movies.isNullOrEmpty()) return@Observer
