@@ -153,4 +153,10 @@ class MovieRepositoryImpl(
     override suspend fun fetchMoreMovieUpcoming() {
         fetchUpcoming()
     }
+
+    override suspend fun getAllMovies(): LiveData<List<MovieInfo>> {
+        return withContext(Dispatchers.IO) {
+            return@withContext movieDao.getAllMovies()
+        }
+    }
 }

@@ -28,4 +28,7 @@ interface MovieDao {
 
     @Query("SELECT * FROM movie_metadata")
     fun getMovieMetada(): MovieMetadata
+
+    @Query("SELECT * FROM movie_info")
+    fun getAllMovies(): LiveData<List<MovieInfo>>
 }

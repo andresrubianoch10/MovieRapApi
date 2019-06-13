@@ -21,4 +21,6 @@ interface MovieRepository {
     suspend fun fetchMoreMovieTopRated()
 
     suspend fun fetchMoreMovieUpcoming()
+
+    suspend fun getAllMovies(): LiveData<List<MovieInfo>>
 }
