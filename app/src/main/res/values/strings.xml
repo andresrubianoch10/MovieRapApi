@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">MovieRapApi</string>
     <string name="options">Search</string>
+
+    <string name="text_vote_average">%s/10</string>
 </resources>
