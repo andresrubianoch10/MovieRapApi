@@ -3,7 +3,14 @@
 # Movie Api - MVVM + Coroutines + Kodein (DI)
 <img src="assets/MVVM-Image.png">
 
-Repository focus on consume API from [The Movie Database](https://www.themoviedb.org/) about movies available throughout the world. The application filter by three categories: Popular, Top Rated and Upcoming.
+Repository focus on consume API from [The Movie Database](https://www.themoviedb.org/) about movies available throughout the world. The application filter by three categories: Popular, Top Rated and Upcoming. 
+
+In every list by category, the user is going to see the movie detail once they tapped down in a movie.
+
+## Offline
+
+
+## Search
 
 ## Architecture
 MVVM Architecture has been implemented on this project. My thought is that this design pattern is a better approach in comparison with MVP(Model View Presenter), MVC(Model View Controller) and MVI(Model View Intent) due to this has some advantages that other architecure doesn't.
