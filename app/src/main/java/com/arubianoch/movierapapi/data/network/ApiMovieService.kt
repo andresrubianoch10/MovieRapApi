@@ -42,7 +42,6 @@ interface ApiMovieService {
                     .url()
                     .newBuilder()
                     .addQueryParameter("api_key", API_KEY)
-//                    .addQueryParameter("Content-Type", "application/json;charset=utf-8")
                     .build()
                 val request = chain.request()
                     .newBuilder()
