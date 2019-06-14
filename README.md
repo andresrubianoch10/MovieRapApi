@@ -47,19 +47,27 @@ The project has three big layer which contain all classes filter by funcionality
 
 ## UI Layer
 
-- <b>Adapter</b> directory
+- <b>Adapter</b> directory contain adapter that will be bind on our recycler view. In this case, I'm using a BaseViewHolder to handle two view types with the same data.
 
-- <b>Base</b> directory
+- <b>Base</b> directory contains abstract class that other class must be extends from it to make heritance of funcionalities.
 
-- <b>Detail Movie</b> directory
+- <b>Detail Movie</b> directory contain all the info like fragment and view model to show Movie detail.
 
-- <b>Popular</b> directory
+- <b>Popular</b> directory contain a fragment specially dedicated to show movie popular.
 
-- <b>Search</b> directory
+- <b>Search</b> directory let us to find movie saved on our local database.
 
-- <b>Top Rated</b> directory
+- <b>Top Rated</b> directory contain a fragment specially dedicated to show movie Top rated.
 
-- <b>Upcoming</b> directory
+- <b>Upcoming</b> directory contain a fragment specially dedicated to show movie upcoming.
+
+## Single Responsibility
+This is one of the 5 principles of OOP (S: single Responsibility, O: Open Close Principle, L: Liskov Substitution, I: Interface Segregation, D: Dependency Inversion) and his main goals is that every class or method should only perform one action or task.
+
+## Clean code 
+The clean code are rules defined by Robert C. Martin AKA 'Uncle Bob' and let us a guide to how to write good code. For me, a good write code is that sort of code that is easy to read due to we expend a lot of time reading code no matter if we wrote it a few times before; so, it is important that every line of code could be express by itself what exactly it is doing.
+
+Moreover, there are find some helper from 'uncle bob' that say some advice to accomplished when we desire to write good clean code like DRP (don't repeat yourself), The principle of least Astonishment, The boy scout rule, F.I.R.S.T. and S.O.L.I.D.
 
 ## Architecture
 MVVM Architecture has been implemented on this project. My thought is that this design pattern is a better approach in comparison with MVP(Model View Presenter), MVC(Model View Controller) and MVI(Model View Intent) due to this has some advantages that other architecure doesn't.
