@@ -31,7 +31,9 @@ data class MovieInfo (
         if (id > other.id) return 1
         if (id < other.id) return 1
         if (title?.length!! > other.title!!.length) return 1
-        if (title.length < other.title.length) return 1
+        if (title.length < other.title.length) {
+            return 1
+        }
         return 0
     }
 
@@ -40,8 +42,9 @@ data class MovieInfo (
             return false
         if (obj === this)
             return true
-        if (obj.javaClass != javaClass)
+        if (obj.javaClass != javaClass) {
             return false
+        }
 
         val rhs = obj as MovieInfo?
         return this.title == rhs!!.title

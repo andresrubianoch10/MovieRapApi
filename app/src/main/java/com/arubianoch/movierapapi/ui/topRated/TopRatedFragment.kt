@@ -107,5 +107,6 @@ class TopRatedFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
     private fun showMovieDetail(id: String) {
         val actionDetail = PopularFragmentDirections.actionDetail(id)
         Navigation.findNavController(activity!!, R.id.nav_host_fragment).navigate(actionDetail)
+        activity!!.overridePendingTransition(R.animator.slide_up_in, R.animator.slide_up_out)
     }
 }

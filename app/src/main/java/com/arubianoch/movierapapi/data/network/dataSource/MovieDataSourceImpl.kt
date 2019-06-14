@@ -28,7 +28,7 @@ class MovieDataSourceImpl(
             fetchedMovies.results.forEach { it.movieType = movieType}
             _downloadedMovies.postValue(fetchedMovies)
         } catch (e: NoConnectivityException) {
-            Log.e("Connectivity", "No internet connection.", e)
+            showLogError(e)
         }
     }
 
@@ -38,7 +38,11 @@ class MovieDataSourceImpl(
             upcomingMovies.results.forEach { it.movieType = movieType }
             _downloadedUpcomingMovies.postValue(upcomingMovies)
         } catch (e: NoConnectivityException) {
-            Log.e("Connectivity", "No internet connection.", e)
+            showLogError(e)
         }
+    }
+
+    private fun showLogError(e: NoConnectivityException) {
+        Log.e("Connectivity", "No internet connection.", e)
     }
 }

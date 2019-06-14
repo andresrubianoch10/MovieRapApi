@@ -73,7 +73,7 @@ class SearchActivity : ScopedActivity(),
         intent.putExtra("search_id", contact.id)
         setResult(Activity.RESULT_OK, intent)
         finish()
-//        overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out)
+        overridePendingTransition(R.animator.back_in, R.animator.back_out)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -99,10 +99,14 @@ class SearchActivity : ScopedActivity(),
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item!!.itemId) {
+        when (item!!.itemId) {
             R.id.menu_item_search -> true
-            else -> super.onOptionsItemSelected(item)
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
@@ -110,15 +114,15 @@ class SearchActivity : ScopedActivity(),
             searchView!!.isIconified = true
             return
         }
-
         super.onBackPressed()
+        overridePendingTransition(R.animator.back_in, R.animator.back_out)
     }
 
     private fun setUpRecycler(movies: ArrayList<MovieInfo>) {
         if (searchAdapter == null) {
             searchAdapter = SearchAdapter(movies, this@SearchActivity)
         }
-        recycler_view!!.layoutManager = GridLayoutManager(this@SearchActivity!!, 3)
+        recycler_view!!.layoutManager = GridLayoutManager(this@SearchActivity, 3)
         recycler_view!!.itemAnimator = DefaultItemAnimator()
         recycler_view!!.adapter = searchAdapter
     }

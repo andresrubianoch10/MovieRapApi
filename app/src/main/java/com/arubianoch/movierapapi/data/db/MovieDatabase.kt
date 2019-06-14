@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import androidx.room.migration.Migration
 import com.arubianoch.movierapapi.data.db.converter.LocalDateConverter
 import com.arubianoch.movierapapi.data.db.dao.MovieDao
 import com.arubianoch.movierapapi.data.db.entity.MovieInfo
@@ -28,6 +27,7 @@ abstract class MovieDatabase : RoomDatabase() {
         @Volatile
         private var instance: MovieDatabase? = null
         private val LOCK = Any()
+        private const val DATABASE_NAME = "movie_table"
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: buildDatabase(context).also { instance = it }
@@ -36,7 +36,7 @@ abstract class MovieDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                MovieDatabase::class.java, "movie_table"
+                MovieDatabase::class.java, DATABASE_NAME
             ).fallbackToDestructiveMigration()
                 .build()
     }

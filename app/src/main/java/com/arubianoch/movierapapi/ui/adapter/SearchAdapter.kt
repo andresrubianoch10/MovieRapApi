@@ -11,8 +11,6 @@ import com.arubianoch.movierapapi.R
 import com.arubianoch.movierapapi.data.db.entity.MovieInfo
 import com.arubianoch.movierapapi.internal.glide.GlideApp
 import kotlinx.android.synthetic.main.item_movie.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 class SearchAdapter(
     private val contactList: ArrayList<MovieInfo>?,
@@ -51,7 +49,6 @@ class SearchAdapter(
                             filteredList.add(it)
                         }
                     }
-
                     contactListFiltered = filteredList
                 }
 
