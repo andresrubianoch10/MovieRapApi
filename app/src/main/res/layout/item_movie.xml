@@ -38,7 +38,7 @@
         <ImageView android:id="@+id/moviePoster"
                    android:layout_width="0dp" android:layout_height="270dp"
                    android:contentDescription="@string/app_name"
-                   android:scaleType="fitEnd"
+                   android:scaleType="fitEnd" android:transitionName="imageDetail"
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintTop_toTopOf="parent"

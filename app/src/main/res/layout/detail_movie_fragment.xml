@@ -20,6 +20,7 @@
                                                                     android:fitsSystemWindows="true">
 
             <ImageView android:id="@+id/movie_detail_image"
+                       android:transitionName="imageDetail"
                        android:layout_width="match_parent" android:layout_height="350dp"
                        app:layout_collapseMode="parallax" android:contentDescription="@string/app_name"
                        android:scaleType="fitXY"/>
