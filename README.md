@@ -16,6 +16,15 @@ MovieRapApi has a funcionality of search every movie saved on local database no 
 ## Threads
 This project handle all their threads with Coroutines; depends on every task to accomplish it will switch between Dispatcher.Main to handle UI changes and Dispatcher.IO to perform database operations.
 
+## App Layers
+The project has three big layer which contain all classes filter by funcionality in directories. These are: <b>Data, Internal and UI.</b>
+
+- <b>Data</b> layer handle all information need in the app. This folder contain inside it three big directories like <b>db, network and repository</b>.
+
+- <b>Internal</b> directory contain classes that will handle functions or actions that help to our code to perform some action.
+
+- <b>UI</b> layer will host all classes that have an interaction with the user.
+
 ## Architecture
 MVVM Architecture has been implemented on this project. My thought is that this design pattern is a better approach in comparison with MVP(Model View Presenter), MVC(Model View Controller) and MVI(Model View Intent) due to this has some advantages that other architecure doesn't.
 
