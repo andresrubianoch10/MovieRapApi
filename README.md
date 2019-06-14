@@ -12,8 +12,12 @@ In every list by category, the user is going to see the movie detail once they t
 ## Offline
 The application works offline using latest technology feature offers by google as Architecture Components with Room, View Model and LiveData.
 
+<img src="assets/offfline_func.gif" height="500">
+
 ## Search
 MovieRapApi has a funcionality of search every movie saved on local database no matter of every category type. 
+
+<img src="assets/search_func.gif" height="500">
 
 ## Threads
 This project handle all their threads with Coroutines; depends on every task to accomplish it will switch between Dispatcher.Main to handle UI changes and Dispatcher.IO to perform database operations.
@@ -69,7 +73,6 @@ The obvious purpose of MVVM pattern is abstraction of the View which reduces the
 - You can test it without awkward UI automation and interaction.
 - The presentation layer and the logic is loosely coupled.
 
-
 ## Maintainability
 - A clean separation of different kinds of code should make it easier to go into one or several of those more granular and focused parts and make changes without worrying. That means you can remain agile and keep moving out to new releases quickly.
 
@@ -94,7 +97,8 @@ The obvious purpose of MVVM pattern is abstraction of the View which reduces the
 The main folder contain an apk folder which inside of it you are going to see and APK file that could be install in any android device sdk version is major than 6.0 Mashmellow.
 
 ## Screenshots
-[Pending]
+<img src="assets/ss_1.png" height="500"> <img src="assets/ss_2.png" height="500"> 
+<img src="assets/ss_3.png" height="500"> 
 
 ## Dependencies
 
