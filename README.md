@@ -25,6 +25,36 @@ The project has three big layer which contain all classes filter by funcionality
 
 - <b>UI</b> layer will host all classes that have an interaction with the user.
 
+## Data Layer
+- <b>Db</b> directory contain converters that are classes which make factory pattern design to save the info in the database; Dao class that handle all query into local database; finally, entity folder that this are the model of how we are going to save the info in our local database. Moreover, this big folder contain MovieDatabase class that will create the database and define our models. 
+
+- <b>Network</b> directory contain three folder like connectivity which will let is know if the device has internet connection; secondly, dataSource package that offers the method we can consume without how to do it, this works like a black box. Response folder contain the exactly object is fetched from the server. Moreover, ApiMovieService is the class that has all method that we are going to consume from Movie API.
+
+- <b>Repository</b> directory is the one of the most important folder and classes due to this is the way we are going to fetch the info depends on some values; for example, if the info has been already downloaded, MovieRepository will fetch the info from local database. To acomplish this last step, DataSource class offers the info and send it back using Livedata by a new Thread.
+
+## Internal Layer
+- <b>Exceptions</b> directory contain classes that allows us to handle some no happy path like NO Internet Connection and how to handle these cases.
+
+- <b>Extensions</b> directory is a new funcionality from kotlin language and let us to add more funcionality into classes that are already created. This case, I'm creating a lazyDeferred that let us to call new suspend functions.
+
+- <b>Glide</b> directory contain a helper class to download images from server or local.
+
+## UI Layer
+
+- <b>Adapter</b> directory
+
+- <b>Base</b> directory
+
+- <b>Detail Movie</b> directory
+
+- <b>Popular</b> directory
+
+- <b>Search</b> directory
+
+- <b>Top Rated</b> directory
+
+- <b>Upcoming</b> directory
+
 ## Architecture
 MVVM Architecture has been implemented on this project. My thought is that this design pattern is a better approach in comparison with MVP(Model View Presenter), MVC(Model View Controller) and MVI(Model View Intent) due to this has some advantages that other architecure doesn't.
 
