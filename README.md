@@ -7,6 +7,8 @@ Repository focus on consume API from [The Movie Database](https://www.themoviedb
 
 In every list by category, the user is going to see the movie detail once they tapped down in a movie.
 
+<img src="assets/app_func.gif" height="500">
+
 ## Offline
 The application works offline using latest technology feature offers by google as Architecture Components with Room, View Model and LiveData.
 
