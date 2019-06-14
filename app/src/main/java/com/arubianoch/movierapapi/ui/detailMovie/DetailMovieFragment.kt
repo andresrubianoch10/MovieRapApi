@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.transition.TransitionInflater
 import com.arubianoch.movierapapi.R
 import com.arubianoch.movierapapi.internal.exceptions.DateNotFoundException
 import com.arubianoch.movierapapi.internal.glide.GlideApp
-import com.arubianoch.movierapapi.ui.MainActivity
 import com.arubianoch.movierapapi.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.detail_movie_fragment.*
@@ -31,6 +31,12 @@ class DetailMovieFragment : ScopedFragment(), KodeinAware {
 
     companion object {
         fun newInstance() = DetailMovieFragment()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
     override fun onCreateView(
@@ -72,7 +78,7 @@ class DetailMovieFragment : ScopedFragment(), KodeinAware {
                 .into(movie_detail_image)
 
             detail_title.title = movie.title
-            vote_average.text = movie.vote_average.toString()
+            vote_average.text = getString(R.string.text_vote_average, movie.vote_average.toString())
             date_release.text = movie.release_date
             votes.text = movie.vote_count.toString()
             language.text = movie.original_language
