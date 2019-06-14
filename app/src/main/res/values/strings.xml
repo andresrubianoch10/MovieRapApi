@@ -3,4 +3,5 @@
     <string name="options">Search</string>
 
     <string name="text_vote_average">%s/10</string>
+    <string name="movie_title">Movies</string>
 </resources>

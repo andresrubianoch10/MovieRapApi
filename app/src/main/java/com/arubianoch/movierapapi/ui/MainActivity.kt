@@ -68,9 +68,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onMovieFounded(movieTitle: String, movieId: Int) {
-        val actionDetail = PopularFragmentDirections.actionDetail(movieId.toString())
-        Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment).navigate(actionDetail)
-        overridePendingTransition(R.animator.slide_up_in, R.animator.slide_up_out)
+        try {
+            val actionDetail = PopularFragmentDirections.actionDetail(movieId.toString())
+            Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment).navigate(actionDetail)
+            overridePendingTransition(R.animator.slide_up_in, R.animator.slide_up_out)
+        } catch (e: Exception) {
+            //TODO("Handle go to detail when user go to Search Activity from Fragment detail")
+        }
     }
 
     companion object {

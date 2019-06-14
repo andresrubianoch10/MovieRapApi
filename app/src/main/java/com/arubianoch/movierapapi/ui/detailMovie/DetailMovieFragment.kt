@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.transition.TransitionInflater
 import com.arubianoch.movierapapi.R
+import com.arubianoch.movierapapi.data.db.entity.MovieInfo
 import com.arubianoch.movierapapi.internal.exceptions.DateNotFoundException
 import com.arubianoch.movierapapi.internal.glide.GlideApp
 import com.arubianoch.movierapapi.ui.base.ScopedFragment
@@ -28,10 +29,6 @@ class DetailMovieFragment : ScopedFragment(), KodeinAware {
             : ((String) -> MovieDetailViewModelFactory) by factory()
 
     private lateinit var viewModel: DetailMovieViewModel
-
-    companion object {
-        fun newInstance() = DetailMovieFragment()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,18 +70,22 @@ class DetailMovieFragment : ScopedFragment(), KodeinAware {
         movieSelected.observe(this@DetailMovieFragment, Observer { movie ->
             if (movie == null) return@Observer
 
-            GlideApp.with(this@DetailMovieFragment)
-                .load("https://image.tmdb.org/t/p/original/" + movie.poster_path)
-                .into(movie_detail_image)
-
-            detail_title.title = movie.title
-            vote_average.text = getString(R.string.text_vote_average, movie.vote_average.toString())
-            date_release.text = movie.release_date
-            votes.text = movie.vote_count.toString()
-            language.text = movie.original_language
-            movie_overview.text = movie.overview
-            movie_trailer.text = movie.video.toString()
+            showMovieDetailInfo(movie)
         })
+    }
+
+    private fun showMovieDetailInfo(movie: MovieInfo) {
+        GlideApp.with(this@DetailMovieFragment)
+            .load("https://image.tmdb.org/t/p/original/" + movie.poster_path)
+            .into(movie_detail_image)
+
+        detail_title.title = movie.title
+        vote_average.text = getString(R.string.text_vote_average, movie.vote_average.toString())
+        date_release.text = movie.release_date
+        votes.text = movie.vote_count.toString()
+        language.text = movie.original_language
+        movie_overview.text = movie.overview
+        movie_trailer.text = movie.video.toString()
     }
 }
 

@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.arubianoch.movierapapi.R
 import com.arubianoch.movierapapi.data.db.entity.MovieInfo
 import com.arubianoch.movierapapi.ui.adapter.SearchAdapter
+import com.arubianoch.movierapapi.ui.base.MovieViewModel
+import com.arubianoch.movierapapi.ui.base.MovieViewModelFactory
 import com.arubianoch.movierapapi.ui.base.ScopedActivity
-import com.arubianoch.movierapapi.ui.popular.PopularViewModel
-import com.arubianoch.movierapapi.ui.popular.PopularViewModelFactory
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,9 +37,9 @@ class SearchActivity : ScopedActivity(),
     private var searchView: SearchView? = null
     private var contactList: ArrayList<MovieInfo>? = ArrayList()
     private var searchAdapter: SearchAdapter? = null
-    private val viewModelFactory: PopularViewModelFactory by instance()
+    private val viewModelFactory: MovieViewModelFactory by instance()
 
-    private lateinit var viewModel: PopularViewModel
+    private lateinit var viewModel: MovieViewModel
     //endregion
 
     //region Lifecycle methods
@@ -51,7 +51,7 @@ class SearchActivity : ScopedActivity(),
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setTitle(R.string.options)
 
-        viewModel = ViewModelProviders.of(this@SearchActivity, viewModelFactory).get(PopularViewModel::class.java)
+        viewModel = ViewModelProviders.of(this@SearchActivity, viewModelFactory).get(MovieViewModel::class.java)
 
         bindUI()
     }

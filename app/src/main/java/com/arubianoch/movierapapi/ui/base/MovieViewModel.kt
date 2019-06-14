@@ -1,4 +1,4 @@
-package com.arubianoch.movierapapi.ui.popular
+package com.arubianoch.movierapapi.ui.base
 
 import androidx.lifecycle.ViewModel;
 import com.arubianoch.movierapapi.data.repository.MovieRepository
@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class PopularViewModel(
+class MovieViewModel(
     private val movieRepository: MovieRepository
 ) : ViewModel() {
 
