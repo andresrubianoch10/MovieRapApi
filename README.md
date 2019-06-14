@@ -8,9 +8,13 @@ Repository focus on consume API from [The Movie Database](https://www.themoviedb
 In every list by category, the user is going to see the movie detail once they tapped down in a movie.
 
 ## Offline
-
+The application works offline using latest technology feature offers by google as Architecture Components with Room, View Model and LiveData.
 
 ## Search
+MovieRapApi has a funcionality of search every movie saved on local database no matter of every category type. 
+
+## Threads
+This project handle all their threads with Coroutines; depends on every task to accomplish it will switch between Dispatcher.Main to handle UI changes and Dispatcher.IO to perform database operations.
 
 ## Architecture
 MVVM Architecture has been implemented on this project. My thought is that this design pattern is a better approach in comparison with MVP(Model View Presenter), MVC(Model View Controller) and MVI(Model View Intent) due to this has some advantages that other architecure doesn't.
@@ -79,7 +83,7 @@ The main folder contain an apk folder which inside of it you are going to see an
 [Pending]
 
 ## Animation
-[Pending]
+Navation Architecture components give us a simple way to implement transitions between views. It's important to define which animation we desired for every scenario.
 
 ## References
 
