@@ -102,7 +102,7 @@ The obvious purpose of MVVM pattern is abstraction of the View which reduces the
 - Debugging would be bit difficult when we have complex data bindings.
 
 ## Running the app
-The main folder contain an apk folder which inside of it you are going to see and APK file that could be install in any android device sdk version is major than 6.0 Mashmellow.
+The main folder contain an apk folder which inside of it you are going to see and APK file that could be install in any android device sdk version is major than 6.0 Mashmellow. [APK](https://github.com/andresrubianoch10/MovieRapApi/tree/master/apk)
 
 ## Screenshots
 <img src="assets/ss_1.png" height="500"> <img src="assets/ss_2.png" height="500"> 
