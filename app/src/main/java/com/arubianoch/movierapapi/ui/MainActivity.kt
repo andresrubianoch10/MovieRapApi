@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(
             Intent(this, SearchActivity::class.java), SEARCH_REQUEST
         )
-//        overridePendingTransition(R.anim.activity_in, R.anim.activity_out)
+        overridePendingTransition(R.animator.fade_in, R.animator.fade_out)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
     private fun onMovieFounded(movieTitle: String, movieId: Int) {
         val actionDetail = PopularFragmentDirections.actionDetail(movieId.toString())
         Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment).navigate(actionDetail)
+        overridePendingTransition(R.animator.slide_up_in, R.animator.slide_up_out)
     }
 
     companion object {
