@@ -46,6 +46,10 @@ class DetailMovieFragment : ScopedFragment(), KodeinAware {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setCustomActionBar()
+    }
+
+    private fun setCustomActionBar() {
         val activity = activity as AppCompatActivity?
         activity!!.setSupportActionBar(toolbarDetail)
         activity.toolbar.isVisible = false

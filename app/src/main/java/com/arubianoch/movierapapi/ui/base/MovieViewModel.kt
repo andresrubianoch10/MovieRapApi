@@ -34,4 +34,8 @@ class MovieViewModel(
     fun fetchTopRated() = GlobalScope.launch(Dispatchers.IO) {
         movieRepository.fetchMoreMovieTopRated()
     }
+
+    fun fetchUpcoming() = GlobalScope.launch(Dispatchers.IO) {
+        movieRepository.fetchMoreMovieUpcoming()
+    }
 }

@@ -143,7 +143,8 @@ class MovieRepositoryImpl(
             lastInfoDownloaded.pageUpcoming = nextPage
             upsertMovieMetadata(lastInfoDownloaded)
         }
-        movieDataSource.upcomingMovies("2019-06-15", "2019-09-15", UPCOMING_TYPE, nextPage)
+        //TODO: Change into take period of six months depends on current date
+        movieDataSource.upcomingMovies("2019-06-15", "2019-12-15", UPCOMING_TYPE, nextPage)
     }
 
     private fun getLastMovieMetadataDownloaded(): MovieMetadata = movieDao.getMovieMetada()

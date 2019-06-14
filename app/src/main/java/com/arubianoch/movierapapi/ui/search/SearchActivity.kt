@@ -29,17 +29,20 @@ import org.kodein.di.generic.instance
  * @author Andres Rubiano Del Chiaro
  */
 class SearchActivity : ScopedActivity(),
-    SearchAdapter.ContactsAdapterListener,
+    SearchAdapter.MoviesAdapterListener,
     KodeinAware {
 
     //region Constants and variables
     override val kodein by closestKodein()
     private var searchView: SearchView? = null
-    private var contactList: ArrayList<MovieInfo>? = ArrayList()
     private var searchAdapter: SearchAdapter? = null
     private val viewModelFactory: MovieViewModelFactory by instance()
 
     private lateinit var viewModel: MovieViewModel
+
+    companion object {
+        internal const val ID_SEARCH = "search_id"
+    }
     //endregion
 
     //region Lifecycle methods
@@ -67,10 +70,9 @@ class SearchActivity : ScopedActivity(),
     //endregion
 
     //region Methods
-    override fun onContactSelected(contact: MovieInfo) {
+    override fun onMovieSelected(movieInfo: MovieInfo) {
         val intent = Intent()
-        intent.putExtra("search_title", contact.title)
-        intent.putExtra("search_id", contact.id)
+        intent.putExtra(ID_SEARCH, movieInfo.id)
         setResult(Activity.RESULT_OK, intent)
         finish()
         overridePendingTransition(R.animator.back_in, R.animator.back_out)

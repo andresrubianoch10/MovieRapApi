@@ -61,13 +61,12 @@ class MainActivity : AppCompatActivity() {
             SEARCH_REQUEST ->
                 if (resultCode == Activity.RESULT_OK)
                     onMovieFounded(
-                        data!!.getStringExtra("search_title"),
-                        data!!.getIntExtra("search_id", 0)
+                        data!!.getIntExtra(SearchActivity.ID_SEARCH, 0)
                     )
         }
     }
 
-    private fun onMovieFounded(movieTitle: String, movieId: Int) {
+    private fun onMovieFounded(movieId: Int) {
         try {
             val actionDetail = PopularFragmentDirections.actionDetail(movieId.toString())
             Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment).navigate(actionDetail)

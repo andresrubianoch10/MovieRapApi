@@ -82,7 +82,7 @@ class UpcomingFragment : ScopedFragment(), KodeinAware, MovieAdapter.OnItemClick
     }
 
     override fun onAddMoreItems() {
-        viewModel.fetchTopRated()
+        viewModel.fetchUpcoming()
         lastPosition = adapter?.itemCount?.minus(6)
     }
 }

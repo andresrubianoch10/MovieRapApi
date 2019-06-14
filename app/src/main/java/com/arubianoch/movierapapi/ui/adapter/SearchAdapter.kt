@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 
 class SearchAdapter(
     private val contactList: ArrayList<MovieInfo>?,
-    private val listener: ContactsAdapterListener
+    private val listener: MoviesAdapterListener
 ) : RecyclerView.Adapter<SearchAdapter.MyViewHolder>(), Filterable {
 
     var contactListFiltered: MutableList<MovieInfo>? = ArrayList()
@@ -67,12 +67,12 @@ class SearchAdapter(
     inner class MyViewHolder(
         private val context: Context,
         view: View,
-        listener: ContactsAdapterListener
+        listener: MoviesAdapterListener
     ) : RecyclerView.ViewHolder(view) {
 
         init {
             itemView!!.setOnClickListener {
-                listener.onContactSelected(contactListFiltered!![adapterPosition])
+                listener.onMovieSelected(contactListFiltered!![adapterPosition])
             }
         }
 
@@ -87,7 +87,7 @@ class SearchAdapter(
         }
     }
 
-    interface ContactsAdapterListener {
-        fun onContactSelected(contact: MovieInfo)
+    interface MoviesAdapterListener {
+        fun onMovieSelected(movieInfo: MovieInfo)
     }
 }
