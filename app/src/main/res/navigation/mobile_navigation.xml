@@ -8,19 +8,31 @@
               android:label="popular_fragment" tools:layout="@layout/popular_fragment">
         <action
                 android:id="@+id/actionDetail"
-                app:destination="@id/detailMovieFragment"/>
+                app:destination="@id/detailMovieFragment"
+                app:enterAnim="@animator/slide_up_in"
+                app:exitAnim="@animator/slide_up_out"
+                app:popEnterAnim="@animator/slide_up_back_in"
+                app:popExitAnim="@animator/slide_up_back_out"/>
     </fragment>
     <fragment android:id="@+id/topRatedFragment" android:name="com.arubianoch.movierapapi.ui.topRated.TopRatedFragment"
               android:label="top_rated_fragment" tools:layout="@layout/top_rated_fragment">
         <action
                 android:id="@+id/actionDetail"
-                app:destination="@id/detailMovieFragment"/>
+                app:destination="@id/detailMovieFragment"
+                app:enterAnim="@animator/slide_up_in"
+                app:exitAnim="@animator/slide_up_out"
+                app:popEnterAnim="@animator/slide_up_back_in"
+                app:popExitAnim="@animator/slide_up_back_out"/>
     </fragment>
     <fragment android:id="@+id/upcomingFragment" android:name="com.arubianoch.movierapapi.ui.upcoming.UpcomingFragment"
               android:label="upcoming_fragment" tools:layout="@layout/upcoming_fragment">
         <action
                 android:id="@+id/actionDetail"
-                app:destination="@id/detailMovieFragment"/>
+                app:destination="@id/detailMovieFragment"
+                app:enterAnim="@animator/slide_up_in"
+                app:exitAnim="@animator/slide_up_out"
+                app:popEnterAnim="@animator/slide_up_back_in"
+                app:popExitAnim="@animator/slide_up_back_out"/>
     </fragment>
     <fragment android:id="@+id/detailMovieFragment"
               android:name="com.arubianoch.movierapapi.ui.detailMovie.DetailMovieFragment"
