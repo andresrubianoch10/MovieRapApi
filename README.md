@@ -149,6 +149,7 @@ Navation Architecture components give us a simple way to implement transitions b
 - Junit + LiveData https://jeroenmols.com/blog/2019/01/17/livedatajunit5/
 - Eduardo Medina Github Account - MVVM project : https://github.com/emedinaa/kotlin-mvvm
 - MVVM Resources: https://www.tutorialspoint.com/mvvm/mvvm_advantages.htm 
+- Coroutines in Kotlin 1.3 explained: Suspending functions, contexts, builders and scopes : https://antonioleiva.com/coroutines/
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
